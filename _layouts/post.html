@@ -18,9 +18,7 @@ layout: default
             <h2 class="subheading">{{ page.subtitle }}</h2>
             {% endif %}
             <span class="meta">
-              Last modified: {{ page.last-modified-date | date: '%Y-%m-%d %H:%M'}} &middot;
-              {{ page.last_modified_at | date: '%Y-%m-%d %H:%M' }} &middot; {{ page.category }}
-              <!--{{ post.date | date: '%Y-%m-%d %H:%M' }} &middot; {{ post.category }}-->
+              {{ page.date | date: '%Y-%m-%d %H:%M' }} &middot; {{ page.category }}
             </span>
           </div>
         </div>
