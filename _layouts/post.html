@@ -6,7 +6,7 @@ layout: default
 {% if page.background %}
 <header class="masthead" style="background-image: url('{{ page.background | prepend: site.baseurl | replace: '//', '/' }}')">
   {% else %}
-  <header class="masthead">
+  <header class="masthead"style="background-image: url('/img/index.jpg')">
     {% endif %}
     <div class="overlay"></div>
     <div class="container">
@@ -17,10 +17,9 @@ layout: default
             {% if page.subtitle %}
             <h2 class="subheading">{{ page.subtitle }}</h2>
             {% endif %}
-            <span class="meta">Posted by
-              <a href="#">{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}</a>
-              on {{ page.date | date: '%B %d, %Y' }} &middot; {% include read_time.html
-              content=page.content %}
+            <span class="meta">
+              {{ page.last_modified_at | date: '%Y-%m-%d %H:%M' }} &middot; {{ page.category }}
+              <!--{{ post.date | date: '%Y-%m-%d %H:%M' }} &middot; {{ post.category }}-->
             </span>
           </div>
         </div>

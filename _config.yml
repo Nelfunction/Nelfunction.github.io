@@ -8,7 +8,7 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 #
-# If you need help with YAML syntax, here are some quick references for you: 
+# If you need help with YAML syntax, here are some quick references for you:
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 #
@@ -20,17 +20,17 @@
 
 title: Uranus Diagram
 email: oat641@gmail.com
-description: 
-  Art, Software, Game 
+description:
+  Art, Software, Game
 author: Nelfunction
-baseurl:            
-url:                
+baseurl:
+url:
 
 # Social Profiles
-twitter_username:   
+twitter_username:
 github_username:    Nelfunction
-facebook_username:  
-instagram_username:  
+facebook_username:
+instagram_username:
 linkedin_username:
 
 # Add your google-analytics ID here to activate google analytics
@@ -44,6 +44,23 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site
+
+# Default settings for posting
+defaults:
+  -
+    scope:
+      path: "_posts" # an empty string here means all files in the project
+    values:
+      layout: post
+      background: '/img/index.jpg'
+      category: Journal
+
+plugins:
+  - jekyll-last-modified-at
+
+# Optional. The default date format, used if none is specified in the tag.
+last-modified-at:
+    date-format: '%Y-%m-%d %H:%M'
 
 # Sass/SCSS
 sass:

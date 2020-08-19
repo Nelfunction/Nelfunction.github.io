@@ -1,27 +1,28 @@
 ---
 layout: page
-title: Posts
+title: Category
 ---
 
-{% for post in paginator.posts %}
+{% for eachCategory in site.categories %}
 
-<article class="post-preview">
-  <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
-    <h2 class="post-title">{{ post.title }}</h2>
-    {% if post.subtitle %}
-    <h3 class="post-subtitle">{{ post.subtitle }}</h3>
-    {% else %}
-    <h3 class="post-subtitle">{{ post.excerpt | strip_html | truncatewords: 15 }}</h3>
+<article class="categories">
+    {% if eachCategory[0] != null %}
+    <a href="/categories/{{ eachCategory[0] }}">
+      <table >
+        <td>
+          <h2 class="category-name">{{ eachCategory[0] }}</h2>
+        </td>
+        <td>
+          <p class="category-desc">
+            &middot; {{ eachCategory[1].size}} posts
+          </p>
+        </td>
+      </table>
+    </a>
     {% endif %}
-  </a>
-  <p class="post-meta">
-    {{ post.last_modified_at | date: '%Y-%m-%d %H:%M' }} &middot; {{ post.category }}
-    <!--{{ post.date | date: '%Y-%m-%d %H:%M' }} &middot; {{ post.category }}-->
-  </p>
 </article>
 
-<hr>
-
+  <hr>
 {% endfor %}
 
 <!-- Pager -->
