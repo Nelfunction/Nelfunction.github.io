@@ -1,16 +1,27 @@
-import { Box, Container } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
 export const Layout = () => {
   return (
-    <>
-      <Box pos="fixed" zIndex="-1" h="100vh" w="full" bgImage="url('./background.jpg')" />
-      <Container maxW="1000px" bg="white" borderRadius="30px" padding="16px">
-        레이아웃 <br />
-        <Link to="/home">home</Link> | <Link to="/info">info</Link>
-        <Outlet />
-      </Container>
-    </>
+    <Box w="full" h="full">
+      {/* 메뉴 */}
+      <Box pos="fixed" left={0} w="20%" h="full" bg="green.100">
+        <Link to="/home">
+          <Box>홈</Box>
+        </Link>
+        <Link to="/info">
+          <Box>정보</Box>
+        </Link>
+      </Box>
+
+      {/* 본문 */}
+      <Flex>
+        <Box w="20%" h="full" />
+        <Box w="80%" h="100vh" overflow="auto">
+          <Outlet />
+        </Box>
+      </Flex>
+    </Box>
   );
 };
