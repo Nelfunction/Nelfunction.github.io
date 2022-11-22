@@ -1,12 +1,19 @@
 import axios from 'axios';
 
 const BASIC_ADDRESS = 'https://api.github.com';
-const USER_REPO = 'JYKkkk/dailyAlgorithm';
+const USER_REPO = 'Nelfunction/2022_summer_study';
 
 // 디렉토리 목록 불러오기
-export const getDirList = async (path: string = '') => {
-  console.log('getDirList : ', path);
+export const getContent = async (path: string = '') => {
+  console.log('getContent : ', path);
   const res = await axios.get(`${BASIC_ADDRESS}/repos/${USER_REPO}/contents/${path}`);
+  return res.data;
+};
+
+// get raw file
+export const getRawContent = async (path: string = '') => {
+  console.log('getRawContent : ', path);
+  const res = await axios.get(`https://raw.githubusercontent.com/${USER_REPO}/main/${path}`);
   return res.data;
 };
 

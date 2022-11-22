@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
-import { getDirList } from '../api/github';
+import { getContent } from '../api/github';
 
 export const MenuItem = ({ path = '', title = '' }: { path?: string; title?: string }) => {
   const [dirlist, setDirList] = useState<[any]>();
@@ -11,7 +11,7 @@ export const MenuItem = ({ path = '', title = '' }: { path?: string; title?: str
   const [toggle, setToggle] = useState(false);
 
   const apiCallDirList = async () => {
-    const contents = await getDirList(path);
+    const contents = await getContent(path);
     const dirs = contents.filter((e: any) => e.type === 'dir');
     const files = contents.filter((e: any) => e.type === 'file');
     setDirList(dirs);
@@ -35,7 +35,9 @@ export const MenuItem = ({ path = '', title = '' }: { path?: string; title?: str
             <MenuItem key={idx} path={path + '/' + val.name} title={val.name} />
           ))}
           {filelist?.map((val, idx) => (
-            <Box key={idx}>📄{val.name}</Box>
+            <Box key={idx}>
+              <Link to={'article' + path + '/' + val.name}>📄{val.name}</Link>
+            </Box>
           ))}
         </Box>
       )}

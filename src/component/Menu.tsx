@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
-import { getDirList } from '../api/github';
+import { getContent } from '../api/github';
 import { MenuItem } from './MenuItem';
 
 export const Menu = () => {
