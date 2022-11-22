@@ -4,8 +4,9 @@ const BASIC_ADDRESS = 'https://api.github.com';
 const USER_REPO = 'JYKkkk/dailyAlgorithm';
 
 // 디렉토리 목록 불러오기
-export const getDirList = async () => {
-  const res = await axios.get(`${BASIC_ADDRESS}/repos/${USER_REPO}/contents`);
+export const getDirList = async (path: string = '') => {
+  console.log('getDirList : ', path);
+  const res = await axios.get(`${BASIC_ADDRESS}/repos/${USER_REPO}/contents/${path}`);
   return res.data;
 };
 

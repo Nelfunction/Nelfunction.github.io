@@ -11,7 +11,7 @@ export const Layout = () => {
 
       {/* 본문 */}
       <Flex>
-        <Box w="20%" h="full" />
+        <Box minW="240px" w="20%" h="full" />
         <Box w="80%" h="100vh" overflow="auto">
           <Outlet />
         </Box>
