@@ -43,7 +43,7 @@ export const AuthModal = () => {
 
   return (
     <>
-      <Box onClick={onOpen}>⚙️✒️</Box>
+      <Box onClick={onOpen}>⚙️</Box>
       <Modal isOpen={isOpen} onClose={onClose} onCloseComplete={onCloseModal}>
         <ModalOverlay />
         <ModalContent>
