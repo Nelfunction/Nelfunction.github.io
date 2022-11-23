@@ -1,9 +1,6 @@
-import { Box, Flex } from '@chakra-ui/react';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { Box } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
-import { getContent } from '../api/github';
+import { AuthModal } from './AuthModal';
 import { MenuItem } from './MenuItem';
 
 export const Menu = () => {
@@ -15,9 +12,7 @@ export const Menu = () => {
       <Link to="/info">
         <Box>정보</Box>
       </Link>
-      <Link to="/editor">
-        <Box>작성</Box>
-      </Link>
+      <AuthModal />
       <hr />
       <MenuItem title="root" />
     </Box>
