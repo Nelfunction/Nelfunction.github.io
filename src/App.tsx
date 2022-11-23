@@ -13,7 +13,7 @@ export const App = () => (
       <Route path="/*" element={<Layout />}>
         <Route path="home" element={<Home />} />
         <Route path="info" element={<Info />} />
-        <Route path="article/:path" element={<Article />} />
+        <Route path="article/view/*" element={<Article />} />
         <Route path="editor" element={<Editor />} />
         <Route index element={<Navigate to="home" replace />} />
       </Route>

@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react';
 import axios from 'axios';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { getContent } from '../api/github';
 
@@ -23,7 +23,7 @@ export const MenuItem = ({ path = '', title = '' }: { path?: string; title?: str
     apiCallDirList();
   }, []);
 
-  // 📂🗀🗁
+  const nav = useNavigate();
 
   return (
     <Box>
@@ -36,7 +36,10 @@ export const MenuItem = ({ path = '', title = '' }: { path?: string; title?: str
           ))}
           {filelist?.map((val, idx) => (
             <Box key={idx}>
-              <Link to={'article' + path + '/' + val.name}>📄{val.name}</Link>
+              {/* <Link to={'article/view' + path + '/' + val.name}>📄{val.name}</Link> */}
+              <Box onClick={() => nav('article/view' + path + '/' + val.name, { replace: true })}>
+                📄{val.name}
+              </Box>
             </Box>
           ))}
         </Box>
