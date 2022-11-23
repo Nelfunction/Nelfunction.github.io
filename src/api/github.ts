@@ -1,19 +1,30 @@
 import axios from 'axios';
 
 const BASIC_ADDRESS = 'https://api.github.com';
-const USER_REPO = 'Nelfunction/2022_summer_study';
+const USER_REPO = 'Nelfunction/Nelfunction.github.io';
 
-// 디렉토리 목록 불러오기
+// get content
 export const getContent = async (path: string = '') => {
   console.log('getContent : ', path);
-  const res = await axios.get(`${BASIC_ADDRESS}/repos/${USER_REPO}/contents/${path}`);
+  const res = await axios.get(`${BASIC_ADDRESS}/repos/${USER_REPO}/contents/${path}?ref=dir`);
   return res.data;
 };
 
-// get raw file
+// get raw content
 export const getRawContent = async (path: string = '') => {
   console.log('getRawContent : ', path);
-  const res = await axios.get(`https://raw.githubusercontent.com/${USER_REPO}/main/${path}`);
+  const res = await axios.get(`https://raw.githubusercontent.com/${USER_REPO}/dir/${path}`);
+  return res.data;
+};
+
+// get raw content
+export const githubUserAPI = async () => {
+  let key = '';
+  const res = await axios.get('https://api.github.com/user', {
+    headers: {
+      Authorization: 'Bearer ' + key,
+    },
+  });
   return res.data;
 };
 

@@ -1,8 +1,11 @@
 import { ColorModeScript } from '@chakra-ui/react';
+import { configureStore } from '@reduxjs/toolkit';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { App } from './App';
+import rootReducer from './reducer';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
@@ -10,13 +13,15 @@ const container = document.getElementById('root');
 if (!container) throw new Error('Failed to find the root element');
 const root = ReactDOM.createRoot(container);
 
+const store = configureStore({ reducer: rootReducer });
+
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <ColorModeScript />
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </React.StrictMode>,
+  </Provider>,
 );
 
 // If you want your app to work offline and load faster, you can change

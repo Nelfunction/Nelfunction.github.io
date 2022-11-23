@@ -10,7 +10,6 @@ export const Article = () => {
 
   const apiCallDirList = async () => {
     const content = await getRawContent(path);
-    // console.log('Article content : ', content);
     setMarkdown(content);
   };
 
@@ -22,8 +21,9 @@ export const Article = () => {
   document.documentElement.setAttribute('data-color-mode', 'light');
 
   return (
-    <Box h="120vh" bg="red.200" p="16px">
-      text
+    <Box h="120vh" p="16px">
+      Article
+      <hr />
       <MDEditor.Markdown source={markdown} />
     </Box>
   );
