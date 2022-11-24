@@ -35,7 +35,7 @@ export const getUserAuth = async (key: string) => {
 export const githubUpload = async (key: string, content: string, path: string, title: string) => {
   try {
     const res = await axios.put(
-      `${API}/repos/${REPO}/contents/${path}${title}.md`,
+      `${API}/repos/${REPO}/contents/${path ? path + '/' : path}${title}.md`,
       {
         message: 'upload: ' + title,
         content: btoa(content),
