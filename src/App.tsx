@@ -19,7 +19,7 @@ export const App = () => {
           <Route path="home" element={<Home />} />
           <Route path="info" element={<Info />} />
           <Route path="article/view/*" element={<Article />} />
-          <Route path="article/edit" element={true ? <Editor /> : <Navigate to="/home" />} />
+          <Route path="article/edit/*" element={true ? <Editor /> : <Navigate to="/home" />} />
           <Route path="article/delete/*" element={true ? <Delete /> : <Navigate to="/home" />} />
           <Route index element={<Navigate to="home" replace />} />
         </Route>

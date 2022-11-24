@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getUserAuth } from '../api/github';
 import { setAuthToken } from '../reducer/ghAPIReducer';
 
@@ -43,7 +44,15 @@ export const AuthModal = () => {
 
   return (
     <>
-      <Box onClick={onOpen}>⚙️</Box>
+      {authToken && (
+        <Link to="/article/edit">
+          <Box>✒️</Box>
+        </Link>
+      )}
+
+      <Box onClick={onOpen} userSelect="none">
+        ⚙️
+      </Box>
       <Modal isOpen={isOpen} onClose={onClose} onCloseComplete={onCloseModal}>
         <ModalOverlay />
         <ModalContent>
@@ -51,17 +60,19 @@ export const AuthModal = () => {
           <ModalCloseButton />
 
           {authToken ? (
-            <>
-              <ModalBody>
-                <Center>인증 완료</Center>
-                <Center>
-                  <Button colorScheme="red" onClick={() => dispatch(setAuthToken(''))}>
-                    재설정
-                  </Button>
-                </Center>
-              </ModalBody>
-              <ModalFooter />
-            </>
+            <ModalBody>
+              <Center>인증 완료</Center>
+              <Center>
+                <Button
+                  mt="16px"
+                  mb="24px"
+                  colorScheme="red"
+                  onClick={() => dispatch(setAuthToken(''))}
+                >
+                  재설정
+                </Button>
+              </Center>
+            </ModalBody>
           ) : (
             <>
               <ModalBody>

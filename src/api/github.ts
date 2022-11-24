@@ -34,7 +34,13 @@ export const getUserAuth = async (key: string) => {
 };
 
 // github: 파일 업로드
-export const uploadContent = async (key: string, content: string, path: string, title: string) => {
+export const uploadContent = async (
+  key: string,
+  content: string,
+  path: string,
+  title: string,
+  sha?: string,
+) => {
   try {
     const res = await axios.put(
       `${API}/repos/${REPO}/contents/${path ? path + '/' : path}${title}.md`,
@@ -42,6 +48,7 @@ export const uploadContent = async (key: string, content: string, path: string, 
         message: 'upload: ' + title,
         content: btoa(content),
         branch: BRANCH,
+        sha: sha,
       },
       {
         headers: {

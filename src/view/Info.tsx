@@ -5,6 +5,8 @@ export const Info = () => {
     <Box p="16px">
       <Box fontSize="24px">Just For Fun!</Box>
       <br />
+      <Box>E-mail: oat641@gmail.com</Box>
+      <br />
       <Box>
         Post Repository :&nbsp;
         <InfoLink href="https://github.com/Nelfunction/Nelfunction.github.io/tree/dir" />

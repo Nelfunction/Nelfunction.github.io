@@ -1,4 +1,4 @@
-import { Box, Button, Input } from '@chakra-ui/react';
+import { Box, Button, Flex, Input, Spacer } from '@chakra-ui/react';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 
 export const Article = () => {
   const path = useParams()['*'];
+  const title = path?.split('/').at(-1)?.slice(0, -3);
   const authToken = useSelector((state: any) => state.ghAPIReducer.authToken);
 
   const [markdown, setMarkdown] = useState<string>('');
@@ -24,9 +25,15 @@ export const Article = () => {
   document.documentElement.setAttribute('data-color-mode', 'light');
 
   return (
-    <Box h="120vh" p="16px">
-      Article
-      {authToken && <Link to={'/article/delete/' + path}>✖️삭제</Link>}
+    <Box h="120vh" p="24px">
+      <Flex alignItems="center">
+        <Box fontSize="24px" fontWeight="600">
+          {title}
+        </Box>
+        <Spacer />
+        {authToken && <Link to={'/article/edit/' + path}>✏️</Link>}
+        {authToken && <Link to={'/article/delete/' + path}>✖️</Link>}
+      </Flex>
       <hr />
       <MDEditor.Markdown source={markdown} />
     </Box>

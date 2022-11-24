@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Flex, Spacer } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -17,19 +17,30 @@ export const Menu = () => {
   return (
     <Box pos="fixed" left={0} minW="240px" w="20%" h="full" p="16px" borderRight="1px">
       <Link to="/home">
-        <Box>홈</Box>
+        <Box fontSize="24px" my="8px">
+          NELFUNCTION:
+        </Box>
       </Link>
-      <Link to="/info">
-        <Box>정보</Box>
-      </Link>
-      <Link to="/article/edit">
-        <Box>✒️</Box>
-      </Link>
-      <AuthModal />
+      <Flex>
+        <Link to="/info">
+          <Box>INFO</Box>
+        </Link>
+        &nbsp;|&nbsp;
+        <AuthModal />
+      </Flex>
+
       <br />
       <hr />
       <br />
-      <Box onClick={reloadMenu}>🌀</Box>
+
+      <Flex>
+        <Box> POSTS</Box>
+        <Spacer />
+        <Box onClick={reloadMenu} userSelect="none">
+          ↻
+        </Box>
+      </Flex>
+
       {toggle && <MenuItem title="root" />}
     </Box>
   );

@@ -1,12 +1,16 @@
 import { Box, Button, Input, Flex } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import { useDispatch, useSelector } from 'react-redux';
-import { uploadContent } from '../api/github';
+import { getContent, getRawContent, uploadContent } from '../api/github';
 import { setRefresh } from '../reducer/ghAPIReducer';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export const Editor = () => {
+  const params = useParams()['*'];
+  const urlpath = params?.split('/').slice(0, -1).join('/');
+  const urltitle = params?.split('/').at(-1)?.slice(0, -3);
+
   const dispatch = useDispatch();
   const authToken = useSelector((state: any) => state.ghAPIReducer.authToken);
   const nav = useNavigate();
@@ -15,11 +19,32 @@ export const Editor = () => {
   const [path, setPath] = useState<string>('');
   const [markdown, setMarkdown] = useState<string>('');
 
+  const [sha, setSHA] = useState<string>('');
+
+  const getContentSHA = async () => {
+    const data = await getContent(params);
+    setSHA(data.sha);
+  };
+
+  const apiCallContent = async () => {
+    const content = await getRawContent(params);
+    setMarkdown(content);
+  };
+  useEffect(() => {
+    if (urltitle) {
+      console.log('edit mode');
+      setTitle(urltitle);
+      setPath(urlpath ? urlpath : '');
+      getContentSHA();
+      apiCallContent();
+    }
+  }, [urltitle]);
+
   document.documentElement.setAttribute('data-color-mode', 'light');
 
   const uploadPost = async () => {
     //
-    const data = await uploadContent(authToken, markdown, path, title);
+    const data = await uploadContent(authToken, markdown, path, title, sha);
     if (data) {
       alert('업로드 완료');
       dispatch(setRefresh(path));
