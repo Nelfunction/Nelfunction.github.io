@@ -7,9 +7,10 @@ import { Info } from './view/Info';
 import { Editor } from './view/Editor';
 import { Article } from './view/Article';
 import { useSelector } from 'react-redux';
+import { Delete } from './view/Delete';
 
 export const App = () => {
-  const authToken = useSelector((state: any) => state.ghAPIReducer.authToken);
+  // const authToken = useSelector((state: any) => state.ghAPIReducer.authToken);
 
   return (
     <ChakraProvider theme={theme}>
@@ -18,7 +19,8 @@ export const App = () => {
           <Route path="home" element={<Home />} />
           <Route path="info" element={<Info />} />
           <Route path="article/view/*" element={<Article />} />
-          <Route path="article/edit" element={authToken ? <Editor /> : <Navigate to="/home" />} />
+          <Route path="article/edit" element={true ? <Editor /> : <Navigate to="/home" />} />
+          <Route path="article/delete/*" element={true ? <Delete /> : <Navigate to="/home" />} />
           <Route index element={<Navigate to="home" replace />} />
         </Route>
       </Routes>

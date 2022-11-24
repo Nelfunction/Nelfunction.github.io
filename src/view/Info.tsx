@@ -7,22 +7,29 @@ export const Info = () => {
       <br />
       <Box>
         Post Repository :&nbsp;
-        <Link href="https://github.com/Nelfunction/Nelfunction.github.io/tree/dir" isExternal>
-          https://github.com/Nelfunction/Nelfunction.github.io/tree/dir🔗
-        </Link>
+        <InfoLink href="https://github.com/Nelfunction/Nelfunction.github.io/tree/dir" />
       </Box>
       <Box>
+        Project Repository :&nbsp;
+        <InfoLink href="https://github.com/Nelfunction/Nelfunction.github.io" />
+      </Box>
+      <br />
+      <Box>
         GitHub API :&nbsp;
-        <Link href="https://docs.github.com/en/rest/search" isExternal>
-          https://docs.github.com/en/rest/search🔗
-        </Link>
+        <InfoLink href="https://docs.github.com/en/rest/search" />
       </Box>
       <Box>
         Markdown Editor :&nbsp;
-        <Link href="https://uiwjs.github.io/react-md-editor/" isExternal>
-          https://uiwjs.github.io/react-md-editor/🔗
-        </Link>
+        <InfoLink href="https://uiwjs.github.io/react-md-editor/" />
       </Box>
     </Box>
+  );
+};
+
+const InfoLink = ({ href }: { href: string }) => {
+  return (
+    <Link href={href} color="gray.500" isExternal>
+      {href}🔗
+    </Link>
   );
 };

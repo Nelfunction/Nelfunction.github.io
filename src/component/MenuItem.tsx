@@ -50,9 +50,12 @@ export const MenuItem = ({ path = '', title = '' }: { path?: string; title?: str
           {filelist?.map((val, idx) => (
             <Box key={idx}>
               {/* <Link to={'article/view' + path + '/' + val.name}>📄{val.name}</Link> */}
-              <Box onClick={() => nav('article/view/' + (path ? path + '/' : path) + val.name)}>
+              {/* <Box onClick={() => nav('article/view/' + (path ? path + '/' : path) + val.name)}>
                 📄{val.name}
-              </Box>
+              </Box> */}
+              <Link to={'/article/view/' + (path ? path + '/' : path) + val.name}>
+                📄{val.name}
+              </Link>
             </Box>
           ))}
         </Box>
