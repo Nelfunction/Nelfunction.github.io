@@ -20,6 +20,7 @@
     "@uiw/react-md-editor": "^3.19.7",
     "axios": "^0.27.2",
     "framer-motion": "^6.5.1",
+    "js-base64": "^3.7.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^3.11.0",

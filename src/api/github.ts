@@ -46,7 +46,7 @@ export const uploadContent = async (
       `${API}/repos/${REPO}/contents/${path ? path + '/' : path}${title}.md`,
       {
         message: 'upload: ' + title,
-        content: btoa(content),
+        content: content,
         branch: BRANCH,
         sha: sha,
       },

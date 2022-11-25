@@ -4,9 +4,22 @@ export const Info = () => {
   return (
     <Box p="16px">
       <Box fontSize="24px">Just For Fun!</Box>
+      <hr />
       <br />
+      <Box fontSize="18px" w="80px">
+        About me
+        <hr />
+      </Box>
       <Box>E-mail: oat641@gmail.com</Box>
+      <Box>
+        solved.ac :&nbsp;
+        <InfoLink href="https://solved.ac/profile/oat641" />
+      </Box>
       <br />
+      <Box fontSize="18px" w="140px">
+        About this page
+        <hr />
+      </Box>
       <Box>
         Post Repository :&nbsp;
         <InfoLink href="https://github.com/Nelfunction/Nelfunction.github.io/tree/dir" />

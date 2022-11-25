@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getContent, getRawContent, uploadContent } from '../api/github';
 import { setRefresh } from '../reducer/ghAPIReducer';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Base64 } from 'js-base64';
 
 export const Editor = () => {
   const params = useParams()['*'];
@@ -44,7 +45,8 @@ export const Editor = () => {
 
   const uploadPost = async () => {
     //
-    const data = await uploadContent(authToken, markdown, path, title, sha);
+    const content = Base64.encode(markdown);
+    const data = await uploadContent(authToken, content, path, title, sha);
     if (data) {
       alert('업로드 완료');
       dispatch(setRefresh(path));

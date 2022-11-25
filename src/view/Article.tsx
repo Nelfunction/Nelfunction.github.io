@@ -4,6 +4,7 @@ import MDEditor from '@uiw/react-md-editor';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { getContent, getRawContent } from '../api/github';
 import { useSelector } from 'react-redux';
+import { Base64 } from 'js-base64';
 
 export const Article = () => {
   const path = useParams()['*'];
@@ -13,8 +14,8 @@ export const Article = () => {
   const [markdown, setMarkdown] = useState<string>('');
 
   const apiCallContent = async () => {
-    const content = await getRawContent(path);
-    setMarkdown(content);
+    const data = await getContent(path);
+    setMarkdown(Base64.decode(data.content));
   };
 
   useLayoutEffect(() => {
