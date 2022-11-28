@@ -8,14 +8,17 @@ import { Base64 } from 'js-base64';
 
 export const Article = () => {
   const path = useParams()['*'];
-  const title = path?.split('/').at(-1)?.slice(0, -3);
+  const filename = path?.split('/').slice(-1);
+  const title = (filename as any)[0].slice(0, -3);
   const authToken = useSelector((state: any) => state.ghAPIReducer.authToken);
 
   const [markdown, setMarkdown] = useState<string>('');
 
   const apiCallContent = async () => {
-    const data = await getContent(path);
-    setMarkdown(Base64.decode(data.content));
+    // const data = await getContent(path);
+    // setMarkdown(Base64.decode(data.content));
+    const data = await getRawContent(path);
+    setMarkdown(data);
   };
 
   useLayoutEffect(() => {
@@ -29,7 +32,7 @@ export const Article = () => {
     <Box h="120vh" p="24px">
       <Flex alignItems="center">
         <Box fontSize="24px" fontWeight="600">
-          {title}
+          {filename}
         </Box>
         <Spacer />
         {authToken && <Link to={'/article/edit/' + path}>✏️</Link>}
